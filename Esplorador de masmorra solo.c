@@ -13,7 +13,7 @@
 #define MAGENTA "\033[0;35m"
 #define RESET   "\033[0m"
 
-// Função de animação de carregamento com spinner
+// FunÃ§Ã£o de animaÃ§Ã£o de carregamento com spinner
 void animacaoCarregandoSpinner(int duracaoSegundos) {
     char frames[] = {'|', '/', '-', '\\'};
     printf("\n");
@@ -36,7 +36,7 @@ int main() {
     char comando[20];
     int jogando = 1;
     int tesouroEncontrado = 0;
-    int jozzehAcariciado = 0;  // controle se o Joz'zeh já foi acariciado
+    int jozzehAcariciado = 0;  // controle se o Joz'zeh jÃ¡ foi acariciado
 
     printf(GREEN "\n==============================\n");
     printf(" Seja bem-vindo ao...\n");
@@ -46,10 +46,10 @@ int main() {
     printf(YELLOW "Informe seu nickname: " RESET);
     scanf("%29s", nome);
 
-    // Animação antes de começar a aventura
+    // AnimaÃ§Ã£o antes de comeÃ§ar a aventura
     animacaoCarregandoSpinner(3);
 
-    printf(GREEN "\nOlá, " YELLOW "%s" GREEN "! Sua aventura começa agora.\n" RESET, nome);
+    printf(GREEN "\nOlÃ¡, " YELLOW "%s" GREEN "! Sua aventura comeÃ§a agora.\n" RESET, nome);
     sleep(3);
 
     while (jogando) {
@@ -60,29 +60,29 @@ int main() {
             system("clear");
         #endif
 
-        // Descrição do local
+        // DescriÃ§Ã£o do local
         if (localAtual == 1) {
-            printf(CYAN "\n?? Você está na Entrada da Caverna.\n" RESET);
-            printf("Há um caminho escuro à frente...\n");
+            printf(CYAN "\n?? VocÃª estÃ¡ na Entrada da Caverna.\n" RESET);
+            printf("HÃ¡ um caminho escuro Ã  frente...\n");
             sleep(2);
         } else if (localAtual == 2) {
-            printf(MAGENTA "\n?? Você está no Caminho Escuro.\n" RESET);
-            printf("Você ouve gotas de água e passos... ou seriam ecos?\n");
+            printf(MAGENTA "\n?? VocÃª estÃ¡ no Caminho Escuro.\n" RESET);
+            printf("VocÃª ouve gotas de Ã¡gua e passos... ou seriam ecos?\n");
             printf("Uma luz fraca surge adiante.\n");
             sleep(2);
         } else if (localAtual == 3) {
-            printf(YELLOW "\n?? Você entrou na Câmara do Tesouro!\n" RESET);
+            printf(YELLOW "\n?? VocÃª entrou na CÃ¢mara do Tesouro!\n" RESET);
             if (!tesouroEncontrado) {
                 printf("Riquezas infinitas brilham ao seu redor...\n");
-                printf("E ali está Joz'zeh, o Devorador, dormindo profundamente.\n");
-                sleep(5)
+                printf("E ali estÃ¡ Joz'zeh, o Devorador, dormindo profundamente.\n");
+                sleep(5);
             } else {
-                printf(GREEN "A câmara está vazia, você já pegou o tesouro.\n" RESET);
+                printf(GREEN "A cÃ¢mara estÃ¡ vazia, vocÃª jÃ¡ pegou o tesouro.\n" RESET);
             }
             sleep(5);
         }
 
-        printf(YELLOW "\nComandos disponíveis: " CYAN "avancar" YELLOW ", " CYAN "voltar" YELLOW ", " CYAN "acariciar" YELLOW ", " CYAN "sair\n" RESET);
+        printf(YELLOW "\nComandos disponÃ­veis: " CYAN "avancar" YELLOW ", " CYAN "voltar" YELLOW ", " CYAN "acariciar" YELLOW ", " CYAN "sair\n" RESET);
         printf("Digite um comando: ");
         scanf("%19s", comando);
 
@@ -99,24 +99,24 @@ int main() {
 
                 localAtual = 3;
                 if (!tesouroEncontrado) {
-                    printf(RED "\n??  Você se depara com Joz'zeh, o Devorador!!!\n" RESET);
+                    printf(RED "\n??  VocÃª se depara com Joz'zeh, o Devorador!!!\n" RESET);
                     sleep(1);
-                    printf(RED "Ele rosna... e então...\n" RESET);
+                    printf(RED "Ele rosna... e entÃ£o...\n" RESET);
                     sleep(1);
-                    printf(RED "Ele está... dormindo? ??\n" RESET);
+                    printf(RED "Ele estÃ¡... dormindo? ??\n" RESET);
                     sleep(2);
-                    printf(GREEN "Você passa sorrateiramente...\n" RESET);
+                    printf(GREEN "VocÃª passa sorrateiramente...\n" RESET);
                     sleep(1);
-                    printf(BLUE "\n?? Você adentra a sala do tesouro...\n" RESET);
+                    printf(BLUE "\n?? VocÃª adentra a sala do tesouro...\n" RESET);
                     sleep(1);
-                    printf(BLUE "Parabéns, " YELLOW "%s" BLUE "! Você encontrou o pacote de whiskas dourado!\n" RESET, nome);
-                    printf(GREEN "?? Você venceu o jogo!\n" RESET);
+                    printf(BLUE "ParabÃ©ns, " YELLOW "%s" BLUE "! VocÃª encontrou o pacote de whiskas dourado!\n" RESET, nome);
+                    printf(GREEN "?? VocÃª venceu o jogo!\n" RESET);
                     tesouroEncontrado = 1;
                     
                     sleep(5);
                 }
             } else {
-                printf(RED "?? Você já está na última área.\n" RESET);
+                printf(RED "?? VocÃª jÃ¡ estÃ¡ na Ãºltima Ã¡rea.\n" RESET);
             }
         } else if (strcmp(comando, "voltar") == 0) {
             if (localAtual == 3) {
@@ -124,28 +124,28 @@ int main() {
             } else if (localAtual == 2) {
                 localAtual = 1;
             } else {
-                printf(RED "?? Você já está na entrada.\n" RESET);
+                printf(RED "?? VocÃª jÃ¡ estÃ¡ na entrada.\n" RESET);
             }
         } else if (strcmp(comando, "acariciar") == 0) {
             if (localAtual == 3) {
                 if (!jozzehAcariciado) {
-                    printf(GREEN "\nVocê cuidadosamente acaricia Joz'zeh...\n" RESET);
+                    printf(GREEN "\nVocÃª cuidadosamente acaricia Joz'zeh...\n" RESET);
                     sleep(1);
-                    printf(GREEN "Joz'zeh ronrona baixinho, parecendo gostar da atenção.\n" RESET);
+                    printf(GREEN "Joz'zeh ronrona baixinho, parecendo gostar da atenÃ§Ã£o.\n" RESET);
                     jozzehAcariciado = 1;
                 } else {
-                    printf(YELLOW "\nJoz'zeh já está satisfeito com suas carícias.\n" RESET);
+                    printf(YELLOW "\nJoz'zeh jÃ¡ estÃ¡ satisfeito com suas carÃ­cias.\n" RESET);
                 }
             } else if (localAtual == 2) {
-                printf(YELLOW "Você tenta acariciar algo, mas só sente a brisa... \n" RESET);
+                printf(YELLOW "VocÃª tenta acariciar algo, mas sÃ³ sente a brisa... \n" RESET);
             } else {
-                printf(RED "Não há ninguém para acariciar aqui.\n" RESET);
+                printf(RED "NÃ£o hÃ¡ ninguÃ©m para acariciar aqui.\n" RESET);
             }
         } else if (strcmp(comando, "sair") == 0) {
-            printf(MAGENTA "Saindo do jogo... Até a próxima aventura!\n" RESET);
+            printf(MAGENTA "Saindo do jogo... AtÃ© a prÃ³xima aventura!\n" RESET);
             jogando = 0;
         } else {
-            printf(RED "Comando inválido. Tente novamente.\n" RESET);
+            printf(RED "Comando invÃ¡lido. Tente novamente.\n" RESET);
         }
 
         sleep(1);
