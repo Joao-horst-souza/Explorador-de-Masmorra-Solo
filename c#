@@ -1,1 +1,218 @@
+using System;
+using System.Threading;
+
+class SoloAdventureDungeon
+{
+    static void AnimacaoCarregandoSpinner(int duracaoSegundos)
+    {
+        char[] frames = { '|', '/', '-', '\\' };
+        Console.WriteLine();
+
+        for (int i = 0; i < duracaoSegundos * 4; i++)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write($"\rCarregando {frames[i % 4]}");
+            Console.ResetColor();
+            Thread.Sleep(250);
+        }
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("\rCarregamento completo!   ");
+        Console.ResetColor();
+        Thread.Sleep(1000);
+    }
+
+    static void Main()
+    {
+        string nome;
+        int localAtual = 1;
+        string comando;
+        bool jogando = true;
+        bool tesouroEncontrado = false;
+        bool jozzehAcariciado = false;
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("\n==============================");
+        Console.WriteLine(" Seja bem-vindo ao...");
+        Console.WriteLine("   Solo Adventure Dungeon!");
+        Console.WriteLine("==============================\n");
+        Console.ResetColor();
+
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.Write("Informe seu nickname: ");
+        Console.ResetColor();
+        nome = Console.ReadLine();
+
+        AnimacaoCarregandoSpinner(3);
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine($"\nOlá, ");
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.Write($"{nome}");
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("! Sua aventura começa agora.");
+        Console.ResetColor();
+        Thread.Sleep(3000);
+
+        while (jogando)
+        {
+            Console.Clear();
+
+            // Descrição dos locais
+            if (localAtual == 1)
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\n?? Você está na Entrada da Caverna.");
+                Console.ResetColor();
+                Console.WriteLine("Há um caminho escuro à frente...");
+                Thread.Sleep(2000);
+            }
+            else if (localAtual == 2)
+            {
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("\n?? Você está no Caminho Escuro.");
+                Console.ResetColor();
+                Console.WriteLine("Você ouve gotas de água e passos... ou seriam ecos?");
+                Console.WriteLine("Uma luz fraca surge adiante.");
+                Thread.Sleep(2000);
+            }
+            else if (localAtual == 3)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\n?? Você entrou na Câmara do Tesouro!");
+                Console.ResetColor();
+
+                if (!tesouroEncontrado)
+                {
+                    Console.WriteLine("Riquezas infinitas brilham ao seu redor...");
+                    Console.WriteLine("E ali está Joz'zeh, o Devorador, dormindo profundamente.");
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("A câmara está vazia, você já pegou o tesouro.");
+                    Console.ResetColor();
+                }
+
+                Thread.Sleep(5000);
+            }
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\nComandos disponíveis: ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("avancar, voltar, acariciar, sair");
+            Console.ResetColor();
+            Console.Write("Digite um comando: ");
+            comando = Console.ReadLine().ToLower();
+
+            if (comando == "avancar")
+            {
+                if (localAtual == 1)
+                {
+                    localAtual = 2;
+                }
+                else if (localAtual == 2)
+                {
+                    Console.Clear();
+                    localAtual = 3;
+
+                    if (!tesouroEncontrado)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\n?? Você se depara com Joz'zeh, o Devorador!!!");
+                        Thread.Sleep(1000);
+                        Console.WriteLine("Ele rosna... e então...");
+                        Thread.Sleep(1000);
+                        Console.WriteLine("Ele está... dormindo? ??");
+                        Thread.Sleep(2000);
+
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Você passa sorrateiramente...");
+                        Thread.Sleep(1000);
+
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine("\n?? Você adentra a sala do tesouro...");
+                        Thread.Sleep(1000);
+                        Console.WriteLine($"Parabéns, {nome}! Você encontrou o pacote de whiskas dourado!");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("?? Você venceu o jogo!");
+                        Console.ResetColor();
+                        tesouroEncontrado = true;
+                        Thread.Sleep(5000);
+                    }
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("?? Você já está na última área.");
+                    Console.ResetColor();
+                }
+            }
+            else if (comando == "voltar")
+            {
+                if (localAtual == 3)
+                {
+                    localAtual = 2;
+                }
+                else if (localAtual == 2)
+                {
+                    localAtual = 1;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("?? Você já está na entrada.");
+                    Console.ResetColor();
+                }
+            }
+            else if (comando == "acariciar")
+            {
+                if (localAtual == 3)
+                {
+                    if (!jozzehAcariciado)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\nVocê cuidadosamente acaricia Joz'zeh...");
+                        Thread.Sleep(1000);
+                        Console.WriteLine("Joz'zeh ronrona baixinho, parecendo gostar da atenção.");
+                        jozzehAcariciado = true;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("\nJoz'zeh já está satisfeito com suas carícias.");
+                    }
+                    Console.ResetColor();
+                }
+                else if (localAtual == 2)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Você tenta acariciar algo, mas só sente a brisa...");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Não há ninguém para acariciar aqui.");
+                    Console.ResetColor();
+                }
+            }
+            else if (comando == "sair")
+            {
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Saindo do jogo... Até a próxima aventura!");
+                Console.ResetColor();
+                jogando = false;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Comando inválido. Tente novamente.");
+                Console.ResetColor();
+            }
+
+            Thread.Sleep(1000);
+        }
+    }
+}
 
